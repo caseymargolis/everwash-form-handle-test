@@ -200,7 +200,7 @@
 
 <script>
 document.addEventListener("DOMContentLoaded", function() {
-    document.getElementById("bookacallPopup").addEventListener("submit", async function(event) {
+    document.getElementById("bookacallPopup").addEventListener("submit", function(event) {
     event.preventDefault();
     let fname = document.getElementById("name").value.trim();
     let lname = document.getElementById("lastName").value.trim();
@@ -241,7 +241,7 @@ document.addEventListener("DOMContentLoaded", function() {
       .catch(error => alert(error));
 
       function sendFormDataExternalApi() {
-        await fetch("/.netlify/functions/form-handler", {
+        fetch("/.netlify/functions/form-handler", {
           method: "POST",
           headers: {"Content-Type": "application/json"},
           body: JSON.stringify(formDataExternal)
