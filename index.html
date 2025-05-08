@@ -237,15 +237,12 @@ document.addEventListener("DOMContentLoaded", function() {
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
       body: new URLSearchParams(formData).toString()
     })
-      .then(response => response.json())
       .then(data => console.log(data))
       .catch(error => alert(error));
       
     await fetch("/.netlify/functions/form-handler", {
       method: "POST",
-      headers: {
-          'Content-Type': 'application/json'
-      },
+      headers: {"Content-Type": "application/json"},
       body: JSON.stringify(formDataExternal)
     }).then(response => response.json())
       .then(data => {
