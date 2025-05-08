@@ -229,9 +229,12 @@ document.addEventListener("DOMContentLoaded", function() {
 
     await fetch("/.netlify/functions/form-handler", {
       method: "POST",
+      headers: {
+          'Content-Type': 'application/json'
+      },
       body: JSON.stringify(formData)
     }).then(response => response.json())
-      .then(data => console.log("Response:", JSON.parse(data)))
+      .then(data => console.log("Response:", data))
       .catch(error => console.error("Error:", error));
   });
 
