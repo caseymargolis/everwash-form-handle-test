@@ -71,9 +71,9 @@
                   name="Book A Call 2025" 
                   method="POST"
                   data-netlify="true"
-                  action="/thank-you.html"
+                  action="/"
                   data-netlify-recaptcha="true"
-                  data-netlify-honeypot="bot-field"
+                  netlify-honeypot="bot-field"
                 >
                   <div class="input-row">
                     <div class="input-wrapper">
@@ -237,32 +237,20 @@ document.addEventListener("DOMContentLoaded", function() {
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
       body: new URLSearchParams(formData).toString()
     })
-      .then(data => console.log(data))
+      .then(() => sendFormDataExternalApi())
       .catch(error => alert(error));
-      
-    await fetch("/.netlify/functions/form-handler", {
-      method: "POST",
-      headers: {"Content-Type": "application/json"},
-      body: JSON.stringify(formDataExternal)
-    }).then(response => response.json())
-      .then(data => {
-        console.log("Response:", data)
-        if(data.status === 'success') {
-          //sendFormDataToNetlify();
-        }
-      })
-      .catch(error => console.error("Error:", error));
 
-      // function sendFormDataToNetlify() {
-      //   const formData = new FormData(event.target);
-      //   await fetch("/", {
-      //     method: "POST",
-      //     headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      //     body: new URLSearchParams(formData).toString()
-      //   })
-      //     .then(() => alert("Thank you for your submission"))
-      //     .catch(error => alert(error));
-      // }
+      function sendFormDataExternalApi() {
+        await fetch("/.netlify/functions/form-handler", {
+          method: "POST",
+          headers: {"Content-Type": "application/json"},
+          body: JSON.stringify(formDataExternal)
+        }).then(response => response.json())
+          .then(data => {
+            console.log("Response:", data)
+          })
+          .catch(error => console.error("Error:", error));
+      }
   });
 });
 </script>
