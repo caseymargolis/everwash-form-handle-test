@@ -9,6 +9,7 @@ exports.handler = async (event) => {
     try {
         // Parse the form data
         const formData = JSON.parse(event.body);
+        console.log('formData', formData);
 
         return {
             statusCode: 200,
