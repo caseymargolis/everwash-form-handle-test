@@ -224,8 +224,6 @@ document.addEventListener("DOMContentLoaded", function() {
       carwashzip: carwashzip,
     }
 
-    const formData = new FormData(event.target);
-
     await fetch("/.netlify/functions/form-handler", {
       method: "POST",
       headers: {
@@ -233,19 +231,24 @@ document.addEventListener("DOMContentLoaded", function() {
       },
       body: JSON.stringify(formDataExternal)
     }).then(response => response.json())
-      .then(data => console.log("Response:", data))
+      .then(data => {
+        console.log("Response:", data)
+        if(data.status === 'success') {
+          sendFormDataToNetlify();
+        }
+      })
       .catch(error => console.error("Error:", error));
 
-    await fetch("/", {
-      method: "POST",
-      headers: {
-          'Content-Type': 'application/x-www-form-urlencoded'
-      },
-      body: new URLSearchParams(formData).toString()
-    }).then(response => response.json())
-      .then(data => console.log("Netlify form:", data))
-      .catch(error => console.error("Error:", error));
-      
+      function sendFormDataToNetlify() {
+        const formData = new FormData(event.target);
+        fetch("/", {
+          method: "POST",
+          headers: { "Content-Type": "application/x-www-form-urlencoded" },
+          body: new URLSearchParams(formData).toString()
+        })
+          .then(() => alert("Thank you for your submission"))
+          .catch(error => alert(error));
+      }
   });
 });
 </script>
