@@ -14,6 +14,7 @@ exports.handler = async (event) => {
         return {
             statusCode: 200,
             body: JSON.stringify({
+                status: 'success',
                 message: "Form data received successfully!",
                 data: formData,
             }),
