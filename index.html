@@ -198,14 +198,38 @@
 document.addEventListener("DOMContentLoaded", function() {
     document.getElementById("bookacallPopup").addEventListener("submit", async function(event) {
     event.preventDefault();
-    let formData = new FormData(this);
+    let fname = document.getElementById("name").value.trim();
+    let lname = document.getElementById("lastName").value.trim();
+    let washemail = document.getElementById("email").value.trim();
+    let washphone = document.getElementById("phone").value.trim();
+    let carwashname = document.getElementById("carWashName").value.trim();
+    let washtype = document.getElementById("wash-type").value.trim();
+    let carwashstate = document.getElementById("car-wash-state").value.trim();
+    let carwashzip = document.getElementById("carWashZipcode").value.trim();
 
-    let name = document.getElementById("name").value.trim();
-    let email = document.getElementById("email").value.trim();
-    
+    // console.log('fname', fname);
+    // console.log('lname', lname);
+    // console.log('washemail', washemail);
+    // console.log('washphone', washphone);
+    // console.log('carwashname', carwashname);
+    // console.log('washtype', washtype);
+    // console.log('carwashstate', carwashstate);
+    // console.log('carwashzip', carwashzip);
+
+    let formData = {
+      fname: fname,
+      lname: lname,
+      washemail: washemail,
+      washphone: washphone,
+      carwashname: carwashname,
+      washtype: washtype,
+      carwashstate: carwashstate,
+      carwashzip: carwashzip,
+    }
+
     await fetch("/.netlify/functions/form-handler", {
-        method: "POST",
-        body: JSON.stringify(formData)
+      method: "POST",
+      body: JSON.stringify(formData)
     }).then(response => response.json())
       .then(data => console.log("Response:", JSON.parse(data)))
       .catch(error => console.error("Error:", error));
