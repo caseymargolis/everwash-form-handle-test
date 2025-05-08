@@ -66,7 +66,7 @@
                   Talk to a membership professional about how the EverWash platform can increase the overall
                   profitability of your wash
                 </p>
-                <form id="bookacallPopup2222" name="Book A Call 2025" method="POST" action="/thank-you.html"
+                <form id="bookacallPopup" name="Book A Call 2025" method="POST" action="/thank-you.html"
                   data-netlify-recaptcha="true" data-netlify="true"
                   data-netlify-honeypot="bot-field">
                   <div class="input-row">
@@ -176,7 +176,7 @@
                     our Member Support
                     Team at support@everwash.com or call 215-618-8808 to speak with an agent.
                   </p>
-                  <div data-netlify-recaptcha="true" style="margin-bottom: 15px;"></div>
+              <!--<div data-netlify-recaptcha="true" style="margin-bottom: 15px;"></div> -->
                   <div class="d-c">
                     <button class="btn btn-accent btn-large" type="submit">
                       Submit
@@ -233,8 +233,18 @@ document.addEventListener("DOMContentLoaded", function() {
     }).then(response => response.json())
       .then(data => console.log("Response:", data))
       .catch(error => console.error("Error:", error));
-  });
 
+    await fetch("/", {
+      method: "POST",
+      headers: {
+          'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(formData)
+    }).then(response => response.json())
+      .then(data => console.log("Netlify form:", data))
+      .catch(error => console.error("Error:", error));
+      
+  });
 });
 </script>
 
