@@ -193,7 +193,8 @@
 
 <script>
 document.addEventListener("DOMContentLoaded", function() {
-  document.getElementById("bookacallPopup").addEventListener("submit", function(event) {
+  const form = document.getElementById('bookacallPopup');
+  form.addEventListener("submit", function(event) {
     event.preventDefault();
     let fname = document.getElementById("name").value.trim();
     let lname = document.getElementById("lastName").value.trim();
