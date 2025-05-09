@@ -10,15 +10,14 @@ exports.handler = async (event) => {
         // Parse the form data
         //const formData = JSON.parse(event.body);
         const formData = event.body;
-        const formDataObject = Object.fromEntries(formData.entries());
-        console.log('formDataObject', formDataObject);
+        console.log('formData', formData);
 
         return {
             statusCode: 200,
             body: JSON.stringify({
                 status: 'success',
                 message: "Form data received successfully!",
-                data: formDataObject,
+                data: formData,
             }),
         };
     } catch (error) {
