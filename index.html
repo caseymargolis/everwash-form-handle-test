@@ -71,7 +71,7 @@
                   name="Book A Call 2025" 
                   method="POST"
                   data-netlify="true"
-                  action="/"
+                  action="/.netlify/functions/form-handler"
                   netlify-honeypot="bot-field"
                 >
                   <div class="input-row">
@@ -200,7 +200,7 @@
 
 <script>
 document.addEventListener("DOMContentLoaded", function() {
-    document.getElementById("bookacallPopup").addEventListener("submit", function(event) {
+  document.getElementById("bookacallPopup22222").addEventListener("submit", function(event) {
     event.preventDefault();
     let fname = document.getElementById("name").value.trim();
     let lname = document.getElementById("lastName").value.trim();
@@ -232,13 +232,13 @@ document.addEventListener("DOMContentLoaded", function() {
     }
       
     const formData = new FormData(event.target);
-    fetch("/", {
-      method: "POST",
-      headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: new URLSearchParams(formData).toString()
-    })
-      .then(() => sendFormDataExternalApi())
-      .catch(error => alert(error));
+    // fetch("/", {
+    //   method: "POST",
+    //   headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    //   body: new URLSearchParams(formData).toString()
+    // })
+    //   .then(() => sendFormDataExternalApi())
+    //   .catch(error => alert(error));
 
       function sendFormDataExternalApi() {
         fetch("/.netlify/functions/form-handler", {
