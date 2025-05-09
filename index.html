@@ -238,7 +238,7 @@ document.addEventListener("DOMContentLoaded", function() {
     function sendFormDataExternalApi() {
       fetch("/.netlify/functions/form-handler", {
         method: "POST",
-        body: formData;
+        body: formData
       }).then(response => response.json())
         .then(data => {
           console.log("Response:", data)
