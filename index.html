@@ -71,7 +71,6 @@
                   name="Book A Call 2025" 
                   method="POST"
                   data-netlify="true"
-                  action="/"
                   netlify-honeypot="bot-field"
                 >
                   <div class="input-row">
@@ -210,6 +209,7 @@ document.addEventListener("DOMContentLoaded", function() {
     let washtype = document.getElementById("wash-type").value.trim();
     let carwashstate = document.getElementById("car-wash-state").value.trim();
     let carwashzip = document.getElementById("carWashZipcode").value.trim();
+    let carwashzip = document.getElementById("carWashZipcode").value.trim();
 
     // console.log('fname', fname);
     // console.log('lname', lname);
@@ -231,7 +231,7 @@ document.addEventListener("DOMContentLoaded", function() {
       carwashzip: carwashzip,
     }
       
-    const formData = new FormData(event.target);
+    const formData = new FormData(this);
     // fetch("/", {
     //   method: "POST",
     //   headers: { "Content-Type": "application/x-www-form-urlencoded" },
@@ -243,8 +243,8 @@ document.addEventListener("DOMContentLoaded", function() {
     function sendFormDataExternalApi() {
       fetch("/.netlify/functions/form-handler", {
         method: "POST",
-        headers: {"Content-Type": "application/x-www-form-urlencoded"},
-        body: new URLSearchParams(formData).toString()
+        //headers: {"Content-Type": "application/json"},
+        body: new FormData(formData);
       }).then(response => response.json())
         .then(data => {
           console.log("Response:", data)
