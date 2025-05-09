@@ -17,7 +17,7 @@ exports.handler = async (event) => {
             body: JSON.stringify({
                 status: 'success',
                 message: "Form data received successfully!",
-                data: formData,
+                data: new URLSearchParams(formData).toString(),
             }),
         };
     } catch (error) {
