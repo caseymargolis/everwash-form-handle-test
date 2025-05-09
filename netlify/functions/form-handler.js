@@ -8,8 +8,7 @@ exports.handler = async (event) => {
 
     try {
         // Parse the form data
-        //const formData = JSON.parse(event.body);
-        const formData = event.body;
+        const formData = JSON.parse(event.body);
         console.log('formData', formData);
 
         return {
