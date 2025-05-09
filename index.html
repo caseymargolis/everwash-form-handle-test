@@ -226,7 +226,7 @@ document.addEventListener("DOMContentLoaded", function() {
       carwashzip: carwashzip,
     }
       
-    const formData = new FormData(this);
+    const formData = new FormData(form);
     // fetch("/", {
     //   method: "POST",
     //   headers: { "Content-Type": "application/x-www-form-urlencoded" },
@@ -238,8 +238,7 @@ document.addEventListener("DOMContentLoaded", function() {
     function sendFormDataExternalApi() {
       fetch("/.netlify/functions/form-handler", {
         method: "POST",
-        //headers: {"Content-Type": "application/json"},
-        body: new FormData(formData);
+        body: formData;
       }).then(response => response.json())
         .then(data => {
           console.log("Response:", data)
